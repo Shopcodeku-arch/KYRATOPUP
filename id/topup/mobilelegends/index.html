@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopUp Mobile Legends - KYRATOPUP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="googlekyraatopup0192827272919828.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="../" class="logo">
+            <img src="https://i.ibb.co.com/fd5B7RMW/background-removed-1771297119375.png" alt="Logo">
+        </a>
+        <div class="nav-icons">
+            <img src="https://flagcdn.com/w40/id.png" alt="ID" style="width: 24px; border-radius: 3px;">
+            <div id="user-area">
+                <button id="login-btn" class="btn-login" onclick="loginDiscord()">Login Discord</button>
+            </div>
+        </div>
+    </nav>
+    <div class="game-header">
+        <a href="../" class="back-btn-banner">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+
+        <div class="game-banner-bg"></div>
+        <div class="game-info-container">
+            <div class="game-icon-float">
+                <img src="https://i.ibb.co.com/XxWk56Ws/Proyek-Baru-21-2322414.webp" alt="MLBB">
+            </div>
+            <div class="game-text">
+                <h1>Mobile Legends</h1>
+                <p>5vs5 Moba!</p>
+                <div class="game-badges">
+                    <span><i class="fas fa-bolt"></i> Proses Cepat</span>
+                    <span><i class="fas fa-clock"></i> Layanan 24 Jam</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-width">
+        
+        <div class="tab-switch">
+            <button class="active" onclick="switchTab('topup')">TopUp</button>
+            <button onclick="switchTab('keterangan')">Keterangan</button>
+        </div>
+
+        <div id="topup-content" class="tab-content active">
+            
+            <div class="order-section" id="section-id"> 
+                <div class="section-number">1</div>
+                <div class="section-content">
+                    <h3>Masukkan User ID</h3>
+                    <div class="input-row">
+                        <div style="width: 100%;">
+                            <input type="number" id="userId" placeholder="User ID" class="input-field" oninput="checkNickname()">
+                            <small id="error-userId" class="error-text" style="display: none;">Isi terlebih dahulu!</small>
+                        </div>
+                        <div style="width: 40%;">
+                            <input type="number" id="zoneId" placeholder="Zone ID" class="input-field" oninput="checkNickname()">
+                            <small id="error-zoneId" class="error-text" style="display: none;">Isi terlebih dahulu!</small>
+                        </div>
+                    </div>
+                    <div id="nickname-display" class="nickname-box" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> Mengecek ID...
+                    </div>
+                    <p class="input-hint">Contoh: 12345678 (1234), Cek Di Dalam Game</p>
+                </div>
+            </div>
+            <div class="order-section flash-sale-section" id="flash-sale-container">
+                <div class="flash-sale-header">
+                    <div class="fs-title">
+                        <i class="fas fa-bolt" style="color: #ffeaa7;"></i> FLASH SALE
+                    </div>
+                    <div class="countdown-timer" id="countdown">LOADING...</div>
+                </div>
+                
+                <div class="item-grid" style="padding: 15px;">
+                    <div class="item-card" onclick="selectItem(this, 'Weekly Diamond Pass x1', 27500)">
+                        <div class="fs-tag">HEMAT</div>
+                        <img src="https://i.ibb.co.com/8LGd8Vf3/background-removed-1771485087898.png" alt="WDP">
+                        <div class="item-name">Weekly Diamond Pass x1</div>
+                        <div class="item-price">Rp 27.500</div>
+                        <div class="item-price-coret">Rp 35.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-section">
+                <div class="section-number">2</div>
+                <div class="section-content">
+                    <h3>Pilih Nominal</h3>
+                    
+                    <div class="category-label"> Spesial Items & Pass</div>
+                    <div class="item-grid">
+                         <div class="item-card" onclick="selectItem(this, 'Twilight Pass', 151000)">
+                            <img src="https://i.ibb.co.com/JwGTRjBF/web-D024-F7-E.png" alt="TP">
+                            <div class="item-name">Twilight Pass</div>
+                            <div class="item-price">Rp 151.000</div>
+                        </div>
+                         <div class="item-card" onclick="selectItem(this, 'Weekly Diamond Pass x1', 28000)">
+                            <img src="https://i.ibb.co.com/8LGd8Vf3/background-removed-1771485087898.png" alt="WDP">
+                            <div class="item-name">Weekly Diamond Pass x1</div>
+                            <div class="item-price">Rp 28.000</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, 'Weekly Diamond Pass x2', 55000)">
+                            <img src="https://i.ibb.co.com/8LGd8Vf3/background-removed-1771485087898.png" alt="WDP">
+                            <div class="item-name">Weekly Diamond Pass x2</div>
+                            <div class="item-price">Rp 55.000</div>
+                        </div>
+                         <div class="item-card" onclick="selectItem(this, 'Weekly Diamond Pass x3', 82500)">
+                            <img src="https://i.ibb.co.com/8LGd8Vf3/background-removed-1771485087898.png" alt="WDP">
+                            <div class="item-name">Weekly Diamond Pass x3</div>
+                            <div class="item-price">Rp 82.500</div>
+                        </div>
+                         <div class="item-card" onclick="selectItem(this, 'Weekly Diamond Pass x4', 112000)">
+                            <img src="https://i.ibb.co.com/8LGd8Vf3/background-removed-1771485087898.png" alt="WDP">
+                            <div class="item-name">Weekly Diamond Pass x4</div>
+                            <div class="item-price">Rp 112.000</div>
+                        </div>
+                         <div class="item-card" onclick="selectItem(this, 'Weekly Diamond Pass x5', 138500)">
+                            <img src="https://i.ibb.co.com/8LGd8Vf3/background-removed-1771485087898.png" alt="WDP">
+                            <div class="item-name">Weekly Diamond Pass x5</div>
+                            <div class="item-price">Rp 138.500</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, 'Starlight Card', 35000)">
+                            <img src="https://i.ibb.co.com/zWn3qpm4/background-removed-1771082141681.webp" alt="SL">
+                            <div class="item-name">Starlight Card</div>
+                            <div class="item-price">Rp 35.000</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, 'Premium Starlight Card', 65000)">
+                            <img src="https://i.ibb.co.com/8H2FbYW/background-removed-1771080944285.webp" alt="PSL">
+                            <div class="item-name">Premium Starlight Card</div>
+                            <div class="item-price">Rp 65.000</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, 'Weekly Elite Bundle', 15000)">
+                            <img src="https://i.ibb.co.com/9knFbyhS/background-removed-1771082946975.webp" alt="WEB">
+                            <div class="item-name">Weekly Elite Bundle</div>
+                            <div class="item-price">Rp 15.000</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, 'Monthly Epic Bundle', 74500)">
+                            <img src="https://i.ibb.co.com/7JKHdxYf/background-removed-1771082920125.webp" alt="MEB">
+                            <div class="item-name">Monthly Epic Bundle</div>
+                            <div class="item-price">Rp 74.500</div>
+                        </div>
+                    </div>
+                    <div class="category-label"> Diamonds</div>
+                    <div class="item-grid">
+                        <div class="item-card" onclick="selectItem(this, '5 Diamonds', 1500)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">5 Diamonds</div>
+                            <div class="item-price">Rp 1.500</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '12 Diamonds', 3500)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">12 Diamonds</div>
+                            <div class="item-price">Rp 3.500</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '17 Diamonds', 5500)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">17 Diamonds</div>
+                            <div class="item-price">Rp 5.500</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '40 Diamonds', 11500)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">40 Diamonds</div>
+                            <div class="item-price">Rp 11.500</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '53 Diamonds', 15500)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">53 Diamonds</div>
+                            <div class="item-price">Rp 15.500</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '77 Diamonds', 21800)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">77 Diamonds</div>
+                            <div class="item-price">Rp 21.800</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '154 Diamonds', 43500)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">154 Diamonds</div>
+                            <div class="item-price">Rp 43.500</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '217 Diamonds', 61500)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">217 Diamonds</div>
+                            <div class="item-price">Rp 61.500</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '256 Diamonds', 75500)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">256 Diamonds</div>
+                            <div class="item-price">Rp 75.500</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '367 Diamonds', 103800)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">367 Diamonds</div>
+                            <div class="item-price">Rp 103.800</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '503 Diamonds', 141500)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">503 Diamonds</div>
+                            <div class="item-price">Rp 141.500</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '774 Diamonds', 216500)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">774 Diamonds</div>
+                            <div class="item-price">Rp 216.500</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '1708 Diamonds', 470500)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">1708 Diamonds</div>
+                            <div class="item-price">Rp 470.500</div>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this, '4003 Diamonds', 1128500)">
+                            <img src="https://i.ibb.co.com/hFKGS0VS/background-removed-1771484731824.png" alt="DM">
+                            <div class="item-name">4003 Diamonds</div>
+                            <div class="item-price">Rp 1.128.500</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-section" id="section-payment">
+                <div class="section-number">3</div>
+                <div class="section-content">
+                    <h3 id="payment-title">Pilih Pembayaran</h3>
+                    <div class="payment-grid" id="payment-grid">
+                        <div class="payment-card" onclick="selectPayment(this, 'QRIS')">
+                            <img src="https://i.ibb.co.com/GfBXd2m9/download-3.webp" alt="QRIS">
+                        </div>
+                        <div class="payment-card" onclick="selectPayment(this, 'DANA')">
+                            <img src="https://i.ibb.co.com/XZmG3phS/download-1.webp" alt="DANA">
+                        </div>
+                        <div class="payment-card" onclick="selectPayment(this, 'GOPAY')">
+                            <img src="https://i.ibb.co.com/Z6bRNLvk/download-2.webp" alt="GOPAY">
+                        </div>
+                        <div class="payment-card" onclick="selectPayment(this, 'SHOPEEPAY')">
+                            <img src="https://i.ibb.co.com/vxHmmJMM/background-removed-1771482281305.png" alt="SHOPEEPAY">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="keterangan-content" class="tab-content" style="display: none;">
+            <div class="order-section">
+                <div class="section-content">
+                    <h3><i class="fas fa-info-circle" style="color:#3498db"></i> Cara Top Up</h3>
+                    <ul class="guide-list">
+                        <li>Masukkan <b>User ID</b> dan <b>Zone ID</b> Anda.</li>
+                        <li>Pilih nominal Diamond yang diinginkan.</li>
+                        <li>Pilih Metode Pembayaran yang tersedia.</li>
+                        <li>Klik tombol <b>Pesan Sekarang</b>.</li>
+                        <li>Konfirmasi pesanan pada Popup yang muncul.</li>
+                        <li>Anda akan diarahkan ke <b>WhatsApp Admin</b>.</li>
+                        <li>Lakukan pembayaran sesuai instruksi Admin.</li>
+                    </ul>
+                    <div class="admin-contact">
+                        <h4>Butuh Bantuan? Hubungi Admin</h4>
+                        <a href="https://wa.me/6283849022194" target="_blank" class="btn-wa-admin">
+                            <i class="fab fa-whatsapp"></i> Chat WhatsApp Admin
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="sticky-bottom-bar" id="stickyBar">
+        <div class="bar-content">
+            <div class="selected-info">
+                <span id="selectedItemName">Belum ada item dipilih</span>
+                <span id="selectedItemPrice" class="price-highlight">Rp 0</span>
+            </div>
+            <button class="btn-pesan" onclick="confirmOrder()" disabled id="btnPesan">
+                Pesan Sekarang <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="confirmModal" class="popup-overlay" style="z-index: 2000; display: none;">
+        <div class="roblox-popup-box" style="padding: 20px; max-width: 350px;">
+            <div style="text-align: center; margin-bottom: 15px;">
+                <h3 style="color: #fff; margin-bottom: 5px;">Konfirmasi Pesanan</h3>
+                <p style="color: #aaa; font-size: 12px;">Pastikan data anda sudah benar</p>
+            </div>
+            <div class="confirm-details" style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 13px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="color:#aaa">Nickname:</span>
+                    <span id="conf-nick" style="color:#3498db; font-weight:bold;">-</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="color:#aaa">ID (Zone):</span>
+                    <span id="conf-id">-</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="color:#aaa">Item:</span>
+                    <span id="conf-item">-</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span style="color:#aaa">Metode:</span>
+                    <span id="conf-method" style="font-weight:bold;">-</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 5px; margin-top: 5px;">
+                    <span style="color:#fff">Total:</span>
+                    <span id="conf-price" style="color:#f1c40f; font-weight:bold;">-</span>
+                </div>
+            </div>
+            <button onclick="processOrderToWA()" class="btn-login" style="width: 100%; justify-content: center; margin-bottom: 10px;">
+                <i class="fab fa-whatsapp"></i> Lanjut ke WhatsApp
+            </button>
+            <button onclick="closeConfirmModal()" style="background: transparent; border: 1px solid #555; color: #aaa; width: 100%; padding: 10px; border-radius: 8px; cursor: pointer;">
+                Batal
+            </button>
+        </div>
+    </div>
+
+    <div id="jokiModal" class="popup-overlay joki-overlay" style="z-index: 3000; display: none;">
+        <div class="roblox-popup-box joki-box" style="padding: 0; max-width: 400px; width: 90%; position: relative; border: none; background: transparent;">
+            <button onclick="closeJokiModal()" class="btn-close-ad" style="background: #ff4757; top: 10px; right: 10px; position: absolute;"><i class="fas fa-times"></i></button>
+            <div style="text-align: center;">
+                <img src="https://i.ibb.co.com/p6wM0rBx/1-20260220-055512-0000.webp" alt="Joki Promo" style="width: 100%; border-radius: 15px; display: block;">
+            </div>
+            <button onclick="processJokiWA()" class="btn-login" style="width: 100%; justify-content: center; background: #25D366; color: #000; font-weight: bold; font-size: 16px; padding: 15px; margin-top: 15px; border-radius: 10px;">
+                <i class="fab fa-whatsapp" style="font-size: 20px;"></i> Pesan Joki via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script src="googlekyraatopup0192827272919828.js"></script>
+</body>
+</html>
