@@ -1,5 +1,5 @@
 // ===============================
-// KONFIGURASI SUPABASE
+// KONFIGURASI SUPABASEE
 // ===============================
 const supabaseUrl = 'https://tynclkichqdswtofnvfi.supabase.co';
 const supabaseKey = 'sb_publishable_sH-Nodx2cIbQJADwbN4NRg_4lWe_cEm';
